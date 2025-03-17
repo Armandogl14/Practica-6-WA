@@ -8,10 +8,6 @@ sudo swapon /swapfile
 sudo cp /etc/fstab /etc/fstab.bak
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
-# Actualizar el sistema
-echo "Actualizando el sistema..."
-sudo apt update && sudo apt upgrade -y
-
 # Clonar el repositorio de GitHub
 echo "Clonando el repositorio de GitHub..."
 git clone https://github.com/Armandogl14/Test-P4-Web.git
