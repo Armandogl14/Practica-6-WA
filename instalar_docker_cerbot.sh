@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Habilitando la memoria de intecambio.
+# Habilitando la memoria de intercambio.
 sudo dd if=/dev/zero of=/swapfile count=2048 bs=1MiB
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
@@ -19,7 +19,6 @@ cd practica-4-composer-copy || exit
 
 # Instalar Docker
 echo "Instalando Docker..."
-# Configuración para obtener Docker desde los repositorios oficiales
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 
 # Agregar la clave GPG de Docker
@@ -36,7 +35,7 @@ sudo apt install docker-ce docker-ce-cli containerd.io -y
 echo "Verificando la instalación de Docker..."
 sudo docker --version
 
-# Instalar Docker Compose (si es necesario)
+# Instalar Docker Compose
 echo "Instalando Docker Compose..."
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
@@ -47,12 +46,9 @@ docker-compose --version
 
 # Instalar Certbot
 echo "Instalando Certbot..."
-# Agregar repositorio de Certbot
 sudo apt install software-properties-common -y
 sudo add-apt-repository ppa:certbot/certbot -y
 sudo apt update
-
-# Instalar Certbot
 sudo apt install certbot python3-certbot-nginx -y
 
 # Verificar la instalación de Certbot
@@ -61,16 +57,26 @@ certbot --version
 
 # Generar los certificados SSL con Certbot
 echo "Generando los certificados SSL para tu dominio..."
-# Asegúrate de tener un dominio configurado en tu servidor
-# Reemplaza 'tu_dominio' por tu dominio real cuando lo tengas
 sudo certbot --nginx -d agonzalez.me.turnos.do --agree-tos --no-eff-email --redirect --staple-ocsp -m ajgl0001@ce.pucmm.edu.do
 
 # Verificar que los certificados se generaron correctamente
 echo "Verificando los certificados SSL..."
 sudo certbot certificates
 
-# Detentiendo nginx para liberar el puerto 80
+# Asignar permisos a HAProxy para acceder a los certificados
+echo "Otorgando permisos a HAProxy para acceder a los certificados SSL..."
+sudo groupadd -f ssl-cert  # Crear el grupo si no existe
+sudo usermod -aG ssl-cert haproxy  # Agregar haproxy al grupo ssl-cert
+sudo chown -R root:ssl-cert /etc/letsencrypt/live /etc/letsencrypt/archive
+sudo chmod -R 750 /etc/letsencrypt/live /etc/letsencrypt/archive
+
+# Detener nginx para liberar el puerto 80
+echo "Deteniendo Nginx..."
 sudo systemctl stop nginx
+
+# Reiniciar HAProxy para aplicar los cambios de permisos
+echo "Reiniciando HAProxy..."
+sudo systemctl restart haproxy
 
 # Ejecutar Docker Compose para levantar los servicios
 echo "Levantando los servicios con Docker Compose..."
