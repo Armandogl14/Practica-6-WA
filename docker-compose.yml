@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  app-01:
+  app1:
     build: .
     container_name: mockup-api-01
     ports:
@@ -15,7 +15,7 @@ services:
     networks:
       - backend
 
-  app-02:
+  app2:
     build: .
     container_name: mockup-api-02
     ports:
@@ -29,7 +29,7 @@ services:
     networks:
       - backend
 
-  app-03:
+  app3:
     build: .
     container_name: mockup-api-03
     ports:
