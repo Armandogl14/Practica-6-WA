@@ -69,6 +69,9 @@ sudo certbot --nginx -d agonzalez.me.turnos.do --agree-tos --no-eff-email --redi
 echo "Verificando los certificados SSL..."
 sudo certbot certificates
 
+# Detentiendo nginx para liberar el puerto 80
+sudo systemctl stop nginx
+
 # Ejecutar Docker Compose para levantar los servicios
 echo "Levantando los servicios con Docker Compose..."
 sudo docker-compose up -d
