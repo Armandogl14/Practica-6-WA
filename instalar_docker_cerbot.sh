@@ -63,6 +63,12 @@ sudo certbot --nginx -d ajgonzalez.turnos.do --agree-tos --no-eff-email --redire
 echo "Verificando los certificados SSL..."
 sudo certbot certificates
 
+# Crear el archivo combinado para HAProxy (Certificado + Clave Privada)
+echo "Creando el archivo de certificados para HAProxy..."
+sudo cat /etc/letsencrypt/live/ajgonzalez.turnos.do/fullchain.pem \
+    /etc/letsencrypt/live/ajgonzalez.turnos.do/privkey.pem \
+    | sudo tee /etc/letsencrypt/live/ajgonzalez.turnos.do/haproxy.pem
+
 # Detener nginx para liberar el puerto 80
 echo "Deteniendo Nginx..."
 sudo systemctl stop nginx
