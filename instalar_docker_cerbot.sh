@@ -67,7 +67,7 @@ certbot --version
 echo "Generando los certificados SSL para tu dominio..."
 # Asegúrate de tener un dominio configurado en tu servidor
 # Reemplaza 'tu_dominio' por tu dominio real cuando lo tengas
-sudo certbot --nginx -d tu_dominio --agree-tos --no-eff-email --redirect --staple-ocsp -m tu_email@dominio.com
+sudo certbot --nginx -d agonzalez.me.turnos.do --agree-tos --no-eff-email --redirect --staple-ocsp -m ajgl0001@ce.pucmm.edu.do
 
 # Verificar que los certificados se generaron correctamente
 echo "Verificando los certificados SSL..."
