@@ -19,7 +19,7 @@ cd Test-P4-Web || exit
 
 # Moverse al directorio 'practica-4-compose'
 echo "Moviéndose al directorio practica-4-compose..."
-cd practica-4-compose || exit
+cd practica-4-compose-copy || exit
 
 # Instalar Docker
 echo "Instalando Docker..."
