@@ -63,20 +63,9 @@ sudo certbot --nginx -d agonzalez.me.turnos.do --agree-tos --no-eff-email --redi
 echo "Verificando los certificados SSL..."
 sudo certbot certificates
 
-# Asignar permisos a HAProxy para acceder a los certificados
-echo "Otorgando permisos a HAProxy para acceder a los certificados SSL..."
-sudo groupadd -f ssl-cert  # Crear el grupo si no existe
-sudo usermod -aG ssl-cert haproxy  # Agregar haproxy al grupo ssl-cert
-sudo chown -R root:ssl-cert /etc/letsencrypt/live /etc/letsencrypt/archive
-sudo chmod -R 750 /etc/letsencrypt/live /etc/letsencrypt/archive
-
 # Detener nginx para liberar el puerto 80
 echo "Deteniendo Nginx..."
 sudo systemctl stop nginx
-
-# Reiniciar HAProxy para aplicar los cambios de permisos
-echo "Reiniciando HAProxy..."
-sudo systemctl restart haproxy
 
 # Ejecutar Docker Compose para levantar los servicios
 echo "Levantando los servicios con Docker Compose..."
