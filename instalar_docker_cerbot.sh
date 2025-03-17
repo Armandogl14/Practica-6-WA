@@ -57,7 +57,7 @@ certbot --version
 
 # Generar los certificados SSL con Certbot
 echo "Generando los certificados SSL para tu dominio..."
-sudo certbot --nginx -d agonzalez.me.turnos.do --agree-tos --no-eff-email --redirect --staple-ocsp -m ajgl0001@ce.pucmm.edu.do
+sudo certbot --nginx -d ajgonzalez.turnos.do --agree-tos --no-eff-email --redirect --staple-ocsp -m ajgl0001@ce.pucmm.edu.do
 
 # Verificar que los certificados se generaron correctamente
 echo "Verificando los certificados SSL..."
