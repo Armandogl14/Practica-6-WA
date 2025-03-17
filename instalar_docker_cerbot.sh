@@ -65,9 +65,9 @@ sudo certbot certificates
 
 # Crear el archivo combinado para HAProxy (Certificado + Clave Privada)
 echo "Creando el archivo de certificados para HAProxy..."
-sudo cat /etc/letsencrypt/live/ajgonzalez.turnos.do/fullchain.pem \
-    /etc/letsencrypt/live/ajgonzalez.turnos.do/privkey.pem \
-    | sudo tee /etc/letsencrypt/live/ajgonzalez.turnos.do/haproxy.pem
+sudo cat /etc/letsencrypt/live/ajglopez.turnos.do/fullchain.pem \
+    /etc/letsencrypt/live/ajglopez.turnos.do/privkey.pem \
+    | sudo tee /etc/letsencrypt/live/ajglopez.turnos.do/haproxy.pem
 
 # Detener nginx para liberar el puerto 80
 echo "Deteniendo Nginx..."
