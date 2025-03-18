@@ -57,7 +57,7 @@ certbot --version
 
 # Generar los certificados SSL con Certbot
 echo "Generando los certificados SSL para tu dominio..."
-sudo certbot --nginx -d ajglopez.turnos.do --agree-tos --no-eff-email --redirect --staple-ocsp -m ajgl0001@ce.pucmm.edu.do
+sudo certbot --nginx -d armandogl.turnos.do --agree-tos --no-eff-email --redirect --staple-ocsp -m ajgl0001@ce.pucmm.edu.do
 
 # Verificar que los certificados se generaron correctamente
 echo "Verificando los certificados SSL..."
@@ -65,9 +65,9 @@ sudo certbot certificates
 
 # Crear el archivo combinado para HAProxy (Certificado + Clave Privada)
 echo "Creando el archivo de certificados para HAProxy..."
-sudo cat /etc/letsencrypt/live/ajglopez.turnos.do/fullchain.pem \
-    /etc/letsencrypt/live/ajglopez.turnos.do/privkey.pem \
-    | sudo tee /etc/letsencrypt/live/ajglopez.turnos.do/haproxy.pem
+sudo cat /etc/letsencrypt/live/armandogl.turnos.do/fullchain.pem \
+    /etc/letsencrypt/live/armandogl.turnos.do/privkey.pem \
+    | sudo tee /etc/letsencrypt/live/armandogl.turnos.do/haproxy.pem
 
 # Detener nginx para liberar el puerto 80
 echo "Deteniendo Nginx..."
